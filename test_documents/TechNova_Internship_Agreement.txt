@@ -1,0 +1,47 @@
+TECHNOVA SYSTEMS PRIVATE LIMITED
+STUDENT INTERNSHIP AND TRAINING AGREEMENT
+
+This Internship Agreement ("Agreement") is entered into on 15th July 2026, by and between TechNova Systems Private Limited, with its corporate office at Tech Park, Outer Ring Road, Bangalore ("Company"), and Aarav Sharma, student of B.Tech Computer Science, residing at National Institute of Technology Campus ("Intern").
+
+WHEREAS, the Company agrees to provide practical software engineering training, and the Intern agrees to accept such training under the terms and conditions outlined below:
+
+1. APPOINTMENT AND SCOPE OF INTERNSHIP
+The Intern is appointed as a Software Engineering Intern for an initial term of 6 (six) months commencing on 1st August 2026. The Intern agrees to perform duties assigned by the engineering team with diligence and professionalism.
+
+2. STIPEND AND COMPENSATION TERMS
+2.1 The Company shall disburse a monthly stipend of INR 20,000 (Rupees Twenty Thousand only) to the Intern.
+2.2 Stipend payments are contingent entirely upon client milestone sign-off and receipt of client funds by the company, with no guaranteed monthly schedule. The Company reserves the unilateral right to withhold, delay, or reduce the monthly stipend at its sole discretion based on subjective evaluation of work output.
+
+3. LOCK-IN PERIOD AND LIQUIDATED DAMAGES BOND
+3.1 The Student Trainee agrees to serve the Company for a minimum lock-in period of 24 months, including the 6-month internship and subsequent 18-month associate role.
+3.2 In the event of breach or early departure prior to completion of the 24-month term, the Student shall pay liquidated damages of Rs. 1,50,000 as training fee recovery and operational disruption compensation.
+3.3 The intern shall deposit their original degree certificates, marks cards, and passport with the Company HR as collateral security until completion of the 18-month service bond.
+
+4. RESTRICTIVE COVENANTS AND NON-COMPETE
+4.1 The Student agrees not to work for, consult, or be associated with any competing business in the software or financial technology industry for a period of 24 months globally after departure.
+4.2 Intern shall not solicit any employee, customer, vendor, or partner of the company for a period of 12 months following termination.
+
+5. INTELLECTUAL PROPERTY ASSIGNMENT
+5.1 All inventions, patents, code, copyright, and designs created by the student, whether created during office hours or on personal devices during the internship term, belong exclusively to the Company.
+5.2 The intern waives all moral rights, authorship attribution, and patent inventorship claims for any software module contributed during the internship, including academic capstone projects utilizing company architecture.
+
+6. CONFIDENTIALITY AND GAG OBLIGATIONS
+6.1 The Intern agrees to keep secret and confidential all technical data, client lists, algorithms, source code, and commercial secrets indefinitely.
+6.2 Intern is strictly prohibited from mentioning the company name, project title, or technologies used on their CV, LinkedIn profile, or GitHub repository without prior written CEO permission.
+6.3 Gag clause: The intern agrees never to post negative comments, reviews, or Glassdoor ratings regarding the company or its executives.
+
+7. TERMINATION AND NOTICE PERIOD
+7.1 The Company may terminate this internship agreement at any time, with or without cause, immediately upon written or verbal notice, without any compensation.
+7.2 The intern must provide 90 days written notice to resign, during which no leave may be availed, whereas the employer may dismiss the intern instantly without notice or severance pay.
+
+8. INDEMNITY AND LEGAL LIABILITY
+8.1 The Student shall fully indemnify, defend, and hold harmless the Company from any and all damages, claims, third-party lawsuits, legal costs, and lost profits arising from any code errors or bugs.
+8.2 The intern assumes full personal financial liability for any accidental bugs, production outages, or cybersecurity breaches occurring during their project.
+
+9. GOVERNING LAW AND JURISDICTION
+Any dispute arising out of this agreement shall be subject to the exclusive jurisdiction of the courts located in New York, USA, irrespective of student's residence, and all arbitration costs shall be borne solely by the student.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first written above.
+
+For TechNova Systems Pvt. Ltd.                For the Intern:
+Authorised Signatory                          Aarav Sharma (Student)

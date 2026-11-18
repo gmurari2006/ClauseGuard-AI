@@ -1,0 +1,30 @@
+SKILLPRO EDUCATION TECH SOLUTIONS
+INDEPENDENT STUDENT TUTOR AND CONTENT CREATOR AGREEMENT
+
+This Independent Contractor Agreement is entered into between SkillPro Education Tech Solutions ("Company") and Sneha Mukherjee ("Student Contractor").
+
+1. ENGAGEMENT AND DELIVERABLES
+Student Contractor agrees to record 40 video tutorials on Data Structures & Algorithms and prepare coding exercises as per syllabus guidelines.
+
+2. COMPENSATION TERMS
+2.1 Payment of Rs. 600 per completed lesson shall be made upon technical acceptance.
+2.2 Stipend payments are contingent entirely upon client milestone sign-off and receipt of client funds by the company, with no guaranteed monthly schedule. The contractor agrees that in the event of default, all accrued fees shall be forfeited.
+
+3. INTELLECTUAL PROPERTY AND MORAL RIGHTS WAIVER
+3.1 All inventions, patents, code, copyright, and designs created by the student, whether created during office hours or on personal devices during the term, belong exclusively to the Company.
+3.2 The intern waives all moral rights, authorship attribution, and patent inventorship claims for any educational module contributed.
+
+4. NON-COMPETE RESTRICTION
+The Student agrees not to work for, consult, or be associated with any competing business in the edtech or online tutoring industry for a period of 24 months globally after departure.
+
+5. NON-DISPARAGEMENT AND GAG CLAUSE
+Gag clause: The intern agrees never to post negative comments, reviews, or Glassdoor ratings regarding the company or its executives. The student shall not discuss compensation or dispute terms online.
+
+6. TERMINATION AT WILL
+The Company may terminate this internship agreement at any time, with or without cause, immediately upon written or verbal notice, without any compensation.
+
+7. GOVERNING LAW
+This agreement shall be governed by and construed in accordance with the laws of the State of Delaware without regard to conflict of law principles.
+
+SkillPro Education Solutions                 Student Contractor:
+Operations Manager                           Sneha Mukherjee

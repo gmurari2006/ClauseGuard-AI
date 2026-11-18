@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>ClauseGuard AI – Smart Agreement Analysis & Risk Detection</title>
+  <link rel="stylesheet" href="css/style.css?v=20261118_6">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="clauseguard-app">
+
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-logo">
+        <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-titles">
+          <span class="brand-name">ClauseGuard <span class="brand-ai">AI</span></span>
+          <span class="brand-tagline">Student Agreement Risk Detection & Protection</span>
+        </div>
+      </div>
+      <div class="active-contract-badge" id="activeDocBadge">
+        <span class="status-indicator-dot"></span>
+        <span class="active-doc-name" id="headerDocTitle">No agreement loaded</span>
+        <span class="doc-domain-tag" id="headerDocDomain">Standby</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <!-- Sample contract switcher -->
+      <div class="sample-selector-wrapper">
+        <label for="sampleSelect" class="selector-label">Sample Contracts:</label>
+        <select id="sampleSelect" class="sample-select" autocomplete="off">
+          <option value="" selected>Select Sample Contract</option>
+          <option value="sample_internship">TechNova Software Internship (High Bond / Non-Compete)</option>
+          <option value="sample_placement_bond">Apex Global GET Offer (3-Yr Service Bond)</option>
+          <option value="sample_hostel">GreenValley Residency (Non-Refundable Deposit)</option>
+          <option value="sample_sponsorship">CampusFest Tech Expo (Student Club Liability)</option>
+          <option value="sample_service">SkillPro EdTech (Tutor Contractor Agreement)</option>
+        </select>
+      </div>
+
+      <!-- ML Pipeline Status Button -->
+      <button class="btn btn-secondary btn-sm" id="btnMlEval" title="View evaluated ML pipeline statistics">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span id="mlPipelineBtnLabel">ML Evaluation</span>
+      </button>
+
+      <!-- PDF Download Button -->
+      <button class="btn btn-primary btn-sm" id="btnDownloadReport" disabled>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Download PDF Report</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN THREE-PANEL WORKSPACE -->
+  <main class="workspace-container">
+
+    <!-- ========================================== -->
+    <!-- LEFT PANEL: DOCUMENT MANAGEMENT           -->
+    <!-- ========================================== -->
+    <aside class="panel left-panel" id="panelLeft">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <h2>Documents</h2>
+        </div>
+        <div class="panel-controls">
+          <button class="icon-btn-text" id="btnClearAllDocs" title="Clear all uploaded documents">Clear All</button>
+        </div>
+      </div>
+
+      <!-- Drag & Drop Upload Zone -->
+      <div class="upload-dropzone" id="dropZone">
+        <input type="file" id="fileInput" class="file-input-hidden" multiple accept=".pdf,.docx,.doc,.txt,.md">
+        <div class="upload-icon-circle">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <p class="dropzone-text"><strong>Drag & drop agreement</strong> or <span class="browse-link">browse</span></p>
+        <div class="format-chips">
+          <span class="chip">PDF</span>
+          <span class="chip">DOCX</span>
+          <span class="chip">TXT</span>
+        </div>
+      </div>
+
+      <!-- Secondary upload / paste & comparison options -->
+      <div class="left-quick-actions">
+        <button class="btn btn-ghost btn-xs" id="btnOpenPasteModal">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span>Paste Agreement Text</span>
+        </button>
+        <button class="btn btn-ghost btn-xs compare-docs-btn" id="btnCompareDocs" disabled title="Load at least 2 agreements to compare side by side">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="7" height="16" rx="1"/>
+            <rect x="14" y="4" width="7" height="16" rx="1"/>
+          </svg>
+          <span>Compare Agreements</span>
+        </button>
+      </div>
+
+      <!-- Processing Status Indicator -->
+      <div class="processing-status-bar" id="processingStatus">
+        <div class="status-indicator-icon ready-state" id="statusIcon"></div>
+        <span class="status-label" id="statusLabel">Ready for analysis</span>
+      </div>
+
+      <!-- Document List Section -->
+      <div class="docs-list-section">
+        <div class="section-label-bar">
+          <span class="section-sublabel">LOADED DOCUMENTS</span>
+          <span class="docs-count-pill" id="docCountBadge">0</span>
+        </div>
+
+        <div class="documents-scroll-list" id="docsListContainer">
+          <!-- Dynamically populated document items -->
+          <div class="empty-docs-placeholder">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+              <polyline points="13 2 13 9 20 9"/>
+            </svg>
+            <p>No documents uploaded yet</p>
+            <span class="helper-text">Select a sample contract above or drop a file to start auditing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Protection Mode Banner -->
+      <div class="protection-mode-card">
+        <div class="protection-card-header">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="protection-card-title">Student Safeguards Active</span>
+        </div>
+        <p class="protection-card-desc">
+          Auditing with local ML + deterministic rules referencing Indian Contract Act (Sec. 27, 74, 124) &amp; Copyright Act (Sec. 17, 57). Educational decision aid — not legal advice.
+        </p>
+      </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- CENTRE PANEL: VIEWER & REVIEW WORKSPACE    -->
+    <!-- ========================================== -->
+    <section class="panel centre-panel" id="panelCentre">
+      
+      <!-- Top Navigation Tabs -->
+      <nav class="centre-nav-tabs">
+        <button class="nav-tab active" data-tab="tab-document">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span>Document</span>
+        </button>
+
+        <button class="nav-tab" data-tab="tab-summary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          <span>Summary</span>
+        </button>
+
+        <button class="nav-tab" data-tab="tab-review">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          <span>Contract Review</span>
+          <span class="tab-badge" id="tabReviewCount">0</span>
+        </button>
+
+        <button class="nav-tab" data-tab="tab-qa">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          <span>Q&A</span>
+        </button>
+
+        <!-- Right tab toolbar actions -->
+        <div class="nav-tab-tools">
+          <div class="risk-filter-chips">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip filter-high" data-filter="high">High (<span id="countFilterHigh">0</span>)</button>
+            <button class="filter-chip filter-med" data-filter="medium">Medium (<span id="countFilterMed">0</span>)</button>
+            <button class="filter-chip filter-low" data-filter="low">Low (<span id="countFilterLow">0</span>)</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- TAB 1: INTERACTIVE DOCUMENT VIEWER -->
+      <div class="tab-content active" id="tab-document">
+        <div class="viewer-toolbar">
+          <div class="viewer-search-box">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="viewerSearchInput" placeholder="Search clause text...">
+          </div>
+          <div class="viewer-legend">
+            <span class="legend-item"><span class="legend-color high"></span> High Risk</span>
+            <span class="legend-item"><span class="legend-color medium"></span> Medium Risk</span>
+            <span class="legend-item"><span class="legend-color low"></span> Low Risk</span>
+          </div>
+        </div>
+
+        <div class="document-viewport">
+          <div class="document-sheet" id="documentSheet">
+            <div class="empty-sheet-state">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              <h3>Upload an agreement to begin analysis.</h3>
+              <p>Drag and drop a PDF, DOCX, or TXT file in the left panel, paste text, or choose one from Sample Contracts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: EXECUTIVE SUMMARY -->
+      <div class="tab-content" id="tab-summary">
+        <div class="summary-container" id="summaryContainer">
+          <div class="tab-empty-state">
+            <h3>Upload an agreement to begin analysis.</h3>
+            <p>Executive summary metrics and student protection findings will appear here after analysis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: CONTRACT REVIEW AUDIT TABLE -->
+      <div class="tab-content" id="tab-review">
+        <div class="review-table-container" id="reviewTableContainer">
+          <div class="tab-empty-state">
+            <h3>Upload an agreement to begin analysis.</h3>
+            <p>Clause-by-clause audit results and recommended negotiation actions will appear here after analysis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: INTERACTIVE Q&A -->
+      <div class="tab-content" id="tab-qa">
+        <div class="qa-container">
+          <div class="qa-presets-bar">
+            <span class="presets-title">Popular Student Questions:</span>
+            <div class="presets-chips-container" id="qaPresetsList">
+              <!-- Preset chips populated dynamically -->
+            </div>
+          </div>
+
+          <div class="qa-conversation-stream" id="qaMessagesStream">
+            <div class="qa-welcome-bubble">
+              <div class="ai-avatar">CG</div>
+              <div class="qa-bubble-content">
+                <h4>ClauseGuard Q&A Assistant</h4>
+                <p>Ask anything about this contract in plain English. For example: <em>"Can I quit if I have semester exams?"</em>, <em>"Are they allowed to keep my original marksheets?"</em>, or <em>"Who owns the code I write?"</em></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa-input-tray">
+            <input type="text" id="qaInput" placeholder="Ask a question about this agreement...">
+            <button class="btn btn-primary" id="btnSendQa">
+              <span>Ask</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- RIGHT PANEL: LIVE RISK INSIGHTS & ANALYSIS-->
+    <!-- ========================================== -->
+    <aside class="panel right-panel" id="panelRight">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          <h2>Live Insights</h2>
+        </div>
+        <span class="live-status-pill">ML + Rules</span>
+      </div>
+
+      <div class="insights-scrollable">
+
+        <!-- Neutral Empty State Banner -->
+        <div class="insights-empty-banner" id="insightsEmptyBanner">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>Insights will appear after document analysis.</span>
+        </div>
+
+        <!-- 1. Overall Risk Score Card -->
+        <div class="insight-card risk-score-card">
+          <div class="card-inner-flex">
+            <!-- Circular Gauge -->
+            <div class="gauge-wrapper">
+              <svg class="risk-gauge-svg" viewBox="0 0 100 100">
+                <circle class="gauge-bg" cx="50" cy="50" r="42" />
+                <circle class="gauge-fill" id="gaugeFill" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264" />
+              </svg>
+              <div class="gauge-center-text">
+                <span class="gauge-number" id="riskScoreValue">--</span>
+                <span class="gauge-max">/100</span>
+              </div>
+            </div>
+
+            <div class="score-details">
+              <span class="score-label">OVERALL RISK LEVEL</span>
+              <h3 class="risk-category-heading" id="riskCategoryHeading">Awaiting Document</h3>
+              <p class="score-subtext" id="riskScoreSubtext">Insights will appear after document analysis.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Student vs Counterparty Fairness Meter -->
+        <div class="insight-card fairness-card">
+          <div class="card-title-row">
+            <h4>Student vs Counterparty Balance</h4>
+            <span class="fairness-ratio-badge" id="fairnessRatioBadge">-- / --</span>
+          </div>
+
+          <div class="fairness-bar-container">
+            <div class="fairness-split-bar">
+              <div class="bar-segment student" id="fairnessStudentBar" style="width: 0%;"></div>
+              <div class="bar-segment counterparty" id="fairnessCounterpartyBar" style="width: 0%;"></div>
+            </div>
+            <div class="fairness-labels-row">
+              <span class="label-student">Student Rights: <strong id="studentPctText">--</strong></span>
+              <span class="label-counterparty">Counterparty Bias: <strong id="counterpartyPctText">--</strong></span>
+            </div>
+          </div>
+
+          <p class="fairness-verdict" id="fairnessVerdictText">
+            Insights will appear after document analysis.
+          </p>
+        </div>
+
+        <!-- 3. Clause Risk Distribution Chart -->
+        <div class="insight-card distribution-card">
+          <div class="card-title-row">
+            <h4>Clause Distribution</h4>
+            <span class="clause-total-pill" id="totalClausesPill">0 clauses</span>
+          </div>
+
+          <div class="distribution-stacked-bar">
+            <div class="dist-seg high" id="distHighBar" style="width: 0%;" title="High Risk"></div>
+            <div class="dist-seg medium" id="distMedBar" style="width: 0%;" title="Medium Risk"></div>
+            <div class="dist-seg low" id="distLowBar" style="width: 0%;" title="Low Risk"></div>
+          </div>
+
+          <div class="distribution-legend-grid">
+            <div class="legend-grid-item">
+              <span class="dot high"></span>
+              <span class="dist-label">High Risk:</span>
+              <strong id="distHighCount">0</strong>
+            </div>
+            <div class="legend-grid-item">
+              <span class="dot medium"></span>
+              <span class="dist-label">Medium Risk:</span>
+              <strong id="distMedCount">0</strong>
+            </div>
+            <div class="legend-grid-item">
+              <span class="dot low"></span>
+              <span class="dist-label">Low Risk:</span>
+              <strong id="distLowCount">0</strong>
+            </div>
+          </div>
+
+          <div class="category-tags-flow" id="categoryTagsFlow">
+            <!-- Category count tags -->
+          </div>
+          <div class="cross-clause-dist-row" id="crossClauseDistRow" style="display: none;"></div>
+        </div>
+
+        <!-- 4. Top Critical Issues -->
+        <div class="insight-card top-issues-card">
+          <div class="card-title-row">
+            <h4>Top Contract Vulnerabilities</h4>
+            <span class="badge badge-danger" id="topIssuesCountBadge">0 Red Flags</span>
+          </div>
+          <div class="top-issues-list" id="topIssuesList">
+            <p class="empty-list-notice">Insights will appear after document analysis.</p>
+          </div>
+        </div>
+
+        <!-- 5. Missing Information Alert -->
+        <div class="insight-card missing-info-card">
+          <div class="card-title-row">
+            <h4>Missing or Unclear Terms</h4>
+            <span class="badge badge-warning" id="missingTermsCountBadge">0 Items</span>
+          </div>
+          <div class="missing-items-list" id="missingItemsList">
+            <p class="empty-list-notice">Insights will appear after document analysis.</p>
+          </div>
+        </div>
+
+        <!-- 6. Recommended Action Playbook -->
+        <div class="insight-card recommendations-card">
+          <div class="card-title-row">
+            <h4>Student Negotiation Playbook</h4>
+          </div>
+          <div class="action-items-list" id="recommendationsList">
+            <p class="empty-list-notice">Insights will appear after document analysis.</p>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- CLAUSE INSPECTOR MODAL / FLYOUT CARD       -->
+  <!-- ========================================== -->
+  <div class="clause-inspector-drawer" id="clauseInspector">
+    <div class="inspector-header">
+      <div class="inspector-title-group">
+        <span class="inspector-category-badge" id="inspCategoryBadge">CATEGORY</span>
+        <span class="inspector-risk-badge" id="inspRiskBadge">HIGH RISK</span>
+        <span class="inspector-source-badge" id="inspSourceBadge">Analysis Source</span>
+      </div>
+      <button class="close-inspector-btn" id="btnCloseInspector">&times;</button>
+    </div>
+
+    <div class="inspector-body">
+      <div class="inspector-section">
+        <label class="insp-label">ORIGINAL CONTRACT LANGUAGE:</label>
+        <blockquote class="insp-quote" id="inspOriginalText">Original text will appear here.</blockquote>
+      </div>
+
+      <div class="inspector-section" id="inspCrossRefsSection" style="display: none;">
+        <label class="insp-label">CROSS-CLAUSE RELATIONSHIPS:</label>
+        <div class="insp-crossref-list" id="inspCrossRefsList"></div>
+      </div>
+
+      <div class="inspector-section">
+        <label class="insp-label">WHY THIS MATTERS TO YOU AS A STUDENT:</label>
+        <p class="insp-explanation" id="inspExplanation">Plain-English explanation.</p>
+      </div>
+
+      <div class="inspector-section">
+        <label class="insp-label">RECOMMENDED COUNTER-ACTION / NEGOTIATION TACTIC:</label>
+        <div class="insp-action-box" id="inspActionBox">
+          <p id="inspActionText">Counter action proposal.</p>
+          <button class="btn btn-secondary btn-xs" id="btnCopyCounterProposal">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copy Counter-Clause</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PASTE CONTRACT TEXT MODAL                  -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="pasteModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Paste Agreement Text</h3>
+        <button class="close-modal-btn" id="btnClosePasteModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="pasteDocTitle">Document Title (Optional):</label>
+        <input type="text" id="pasteDocTitle" class="modal-input" placeholder="e.g. Summer_Internship_Offer.txt">
+        
+        <label for="pasteTextInput">Agreement Content:</label>
+        <textarea id="pasteTextInput" class="modal-textarea" rows="12" placeholder="Paste full contract or clauses here..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnCancelPaste">Cancel</button>
+        <button class="btn btn-primary" id="btnSubmitPaste">Analyze Agreement</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ML EVALUATION REPORT MODAL                 -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="mlEvalModal">
+    <div class="modal-dialog modal-large">
+      <div class="modal-header">
+        <div class="modal-title-with-badge">
+          <h3>ML Pipeline Evaluation Report</h3>
+          <span class="badge badge-success">Evaluated & Active</span>
+        </div>
+        <button class="close-modal-btn" id="btnCloseMlModal">&times;</button>
+      </div>
+      <div class="modal-body" id="mlModalBody">
+        <div class="ml-metrics-summary-grid" id="mlMetricsGrid">
+          <!-- Populated from /api/ml-eval -->
+        </div>
+        <h4>Classification Report (Precision, Recall, F1)</h4>
+        <div class="ml-table-wrapper" id="mlReportTableContainer"></div>
+        <h4>Top Predictive N-Grams (Feature Importance)</h4>
+        <div class="features-flow" id="mlTopFeaturesContainer"></div>
+        <div class="ml-dataset-status-section" id="mlDatasetStatusSection" style="display: none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnCloseMlModalBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MULTI-DOCUMENT COMPARISON MODAL            -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="compareModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-header">
+        <div class="modal-title-with-badge">
+          <h3>Side-by-Side Agreement Comparison</h3>
+          <span class="badge badge-gold" id="compareCountBadge">0 Agreements</span>
+        </div>
+        <button class="close-modal-btn" id="btnCloseCompareModal">&times;</button>
+      </div>
+      <div class="modal-body" id="compareModalBody">
+        <!-- Dynamically populated from loadedDocuments -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnCloseCompareModalBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/viewer.js?v=20261118_6"></script>
+  <script src="js/insights.js?v=20261118_6"></script>
+  <script src="js/qa.js?v=20261118_6"></script>
+  <script src="js/app.js?v=20261118_6"></script>
+</body>
+</html>

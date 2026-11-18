@@ -1,0 +1,151 @@
+{
+  "dataset_version": "2.0.0-prepared",
+  "generated_at_utc": "2026-11-18T14:11:00Z",
+  "retraining_status": "PENDING_AUTHORIZATION",
+  "retraining_note": "Expanded dataset is built, validated, and leakage-verified, but the active baseline TF-IDF + Logistic Regression model in backend/models/ (trained on 125 baseline clauses) has NOT been retrained yet.",
+  "baseline_model_dataset_size": 125,
+  "total_clauses": 360,
+  "num_categories": 10,
+  "min_clauses_per_category": 36,
+  "max_clauses_per_category": 36,
+  "distinct_source_groups": 41,
+  "structural_examples_count": 40,
+  "structural_type_distribution": {
+    "document_header": 6,
+    "recital": 6,
+    "signature_block": 9,
+    "disclaimer": 4,
+    "metadata_reference": 7,
+    "section_heading": 8
+  },
+  "text_length_stats": {
+    "min_chars": 84,
+    "max_chars": 318,
+    "avg_chars": 175.4
+  },
+  "category_distribution": {
+    "FINANCIAL_PENALTY_BOND": 36,
+    "STIPEND_PAYMENT_TERMS": 36,
+    "DEPOSIT_REFUND": 36,
+    "TERMINATION_NOTICE": 36,
+    "CONFIDENTIALITY_NDA": 36,
+    "INTELLECTUAL_PROPERTY": 36,
+    "RESTRICTIVE_NON_COMPETE": 36,
+    "LIABILITY_INDEMNITY": 36,
+    "DISPUTE_JURISDICTION": 36,
+    "STANDARD_FAIR": 36
+  },
+  "domain_distribution": {
+    "INTERNSHIP": 106,
+    "PLACEMENT_EMPLOYMENT": 72,
+    "HOSTEL_RESIDENCY": 56,
+    "EVENT_SPONSORSHIP": 38,
+    "STUDENT_SERVICE": 51,
+    "GENERAL_STUDENT_AGREEMENT": 37
+  },
+  "risk_distribution": {
+    "high": 173,
+    "medium": 41,
+    "low": 146
+  },
+  "source_type_distribution": {
+    "curated_synthetic": 292,
+    "sample_agreement_extracted": 68
+  },
+  "quality_gates": {
+    "input_count": 360,
+    "accepted_count": 360,
+    "schema_rejected_count": 0,
+    "length_rejected_count": 0,
+    "exact_duplicates_removed_count": 0,
+    "near_duplicates_removed_count": 0,
+    "near_duplicate_jaccard_threshold": 0.85,
+    "min_chars": 35,
+    "max_chars": 1500,
+    "schema_rejected_samples": [],
+    "length_rejected_samples": [],
+    "exact_duplicate_samples": [],
+    "near_duplicate_samples": []
+  },
+  "split_summary": {
+    "target_ratios": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "actual_counts": {
+      "train": 245,
+      "val": 56,
+      "test": 59
+    },
+    "actual_ratios": {
+      "train": 0.6806,
+      "val": 0.1556,
+      "test": 0.1639
+    },
+    "group_counts": {
+      "train": 30,
+      "val": 5,
+      "test": 6
+    },
+    "per_class_counts": {
+      "train": {
+        "FINANCIAL_PENALTY_BOND": 24,
+        "STIPEND_PAYMENT_TERMS": 26,
+        "DEPOSIT_REFUND": 25,
+        "TERMINATION_NOTICE": 23,
+        "CONFIDENTIALITY_NDA": 24,
+        "INTELLECTUAL_PROPERTY": 24,
+        "RESTRICTIVE_NON_COMPETE": 25,
+        "LIABILITY_INDEMNITY": 25,
+        "DISPUTE_JURISDICTION": 26,
+        "STANDARD_FAIR": 23
+      },
+      "val": {
+        "FINANCIAL_PENALTY_BOND": 7,
+        "STIPEND_PAYMENT_TERMS": 5,
+        "DEPOSIT_REFUND": 5,
+        "TERMINATION_NOTICE": 7,
+        "CONFIDENTIALITY_NDA": 5,
+        "INTELLECTUAL_PROPERTY": 6,
+        "RESTRICTIVE_NON_COMPETE": 5,
+        "LIABILITY_INDEMNITY": 5,
+        "DISPUTE_JURISDICTION": 5,
+        "STANDARD_FAIR": 6
+      },
+      "test": {
+        "FINANCIAL_PENALTY_BOND": 5,
+        "STIPEND_PAYMENT_TERMS": 5,
+        "DEPOSIT_REFUND": 6,
+        "TERMINATION_NOTICE": 6,
+        "CONFIDENTIALITY_NDA": 7,
+        "INTELLECTUAL_PROPERTY": 6,
+        "RESTRICTIVE_NON_COMPETE": 6,
+        "LIABILITY_INDEMNITY": 6,
+        "DISPUTE_JURISDICTION": 5,
+        "STANDARD_FAIR": 7
+      }
+    },
+    "leakage_checks": {
+      "group_overlap_train_val": 0,
+      "group_overlap_train_test": 0,
+      "group_overlap_val_test": 0,
+      "text_overlap_train_val": 0,
+      "text_overlap_train_test": 0,
+      "text_overlap_val_test": 0,
+      "zero_group_leakage": true,
+      "zero_text_overlap": true,
+      "all_classes_in_all_splits": true
+    }
+  },
+  "artifacts": {
+    "clauses_master_jsonl": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\clauses_master.jsonl",
+    "clauses_master_csv": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\clauses_master.csv",
+    "structural_examples_jsonl": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\structural_examples.jsonl",
+    "train_jsonl": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\splits\\train.jsonl",
+    "val_jsonl": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\splits\\val.jsonl",
+    "test_jsonl": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\splits\\test.jsonl",
+    "dataset_report_json": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\dataset_report.json",
+    "dataset_card_md": "C:\\Users\\tinku\\.gemini\\antigravity\\scratch\\ClauseGuard-AI\\datasets\\DATASET_CARD.md"
+  }
+}

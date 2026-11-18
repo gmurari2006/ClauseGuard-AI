@@ -1,0 +1,294 @@
+{
+  "model_type": "TF-IDF + Calibrated Multiclass Logistic Regression",
+  "dataset_size": 125,
+  "train_size": 100,
+  "test_size": 25,
+  "test_accuracy": 0.8,
+  "cv_accuracy_mean": 0.672,
+  "cv_accuracy_std": 0.0392,
+  "macro_avg_f1": 0.7914,
+  "weighted_avg_f1": 0.7977,
+  "classification_report": {
+    "CONFIDENTIALITY_NDA": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 2.0
+    },
+    "DEPOSIT_REFUND": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3.0
+    },
+    "DISPUTE_JURISDICTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "FINANCIAL_PENALTY_BOND": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
+      "support": 3.0
+    },
+    "INTELLECTUAL_PROPERTY": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "LIABILITY_INDEMNITY": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
+      "support": 3.0
+    },
+    "RESTRICTIVE_NON_COMPETE": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1-score": 0.8,
+      "support": 2.0
+    },
+    "STANDARD_FAIR": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 2.0
+    },
+    "STIPEND_PAYMENT_TERMS": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
+      "support": 3.0
+    },
+    "TERMINATION_NOTICE": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3.0
+    },
+    "accuracy": 0.8,
+    "macro avg": {
+      "precision": 0.8166666666666667,
+      "recall": 0.8,
+      "f1-score": 0.7914285714285715,
+      "support": 25.0
+    },
+    "weighted avg": {
+      "precision": 0.8333333333333333,
+      "recall": 0.8,
+      "f1-score": 0.7977142857142857,
+      "support": 25.0
+    }
+  },
+  "confusion_matrix": {
+    "classes": [
+      "CONFIDENTIALITY_NDA",
+      "DEPOSIT_REFUND",
+      "DISPUTE_JURISDICTION",
+      "FINANCIAL_PENALTY_BOND",
+      "INTELLECTUAL_PROPERTY",
+      "LIABILITY_INDEMNITY",
+      "RESTRICTIVE_NON_COMPETE",
+      "STANDARD_FAIR",
+      "STIPEND_PAYMENT_TERMS",
+      "TERMINATION_NOTICE"
+    ],
+    "matrix": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ]
+    ]
+  },
+  "top_features": {
+    "CONFIDENTIALITY_NDA": [
+      "confidential",
+      "years following",
+      "period years",
+      "student shall",
+      "information"
+    ],
+    "DEPOSIT_REFUND": [
+      "refunded",
+      "room",
+      "hostel",
+      "caution",
+      "deposit"
+    ],
+    "DISPUTE_JURISDICTION": [
+      "exclusive jurisdiction",
+      "disputes",
+      "jurisdiction",
+      "courts",
+      "disputes shall"
+    ],
+    "FINANCIAL_PENALTY_BOND": [
+      "liquidated",
+      "liquidated damages",
+      "damages",
+      "rs",
+      "000"
+    ],
+    "INTELLECTUAL_PROPERTY": [
+      "existing",
+      "inventions",
+      "property",
+      "created",
+      "company"
+    ],
+    "LIABILITY_INDEMNITY": [
+      "defend",
+      "incurred",
+      "disclaims",
+      "party",
+      "liability"
+    ],
+    "RESTRICTIVE_NON_COMPETE": [
+      "competing",
+      "software",
+      "compete",
+      "non",
+      "months"
+    ],
+    "STANDARD_FAIR": [
+      "agreement",
+      "relationship",
+      "writing",
+      "counterparts",
+      "parties"
+    ],
+    "STIPEND_PAYMENT_TERMS": [
+      "hours",
+      "month",
+      "calendar",
+      "monthly",
+      "stipend"
+    ],
+    "TERMINATION_NOTICE": [
+      "days written",
+      "terminate",
+      "written notice",
+      "written",
+      "notice"
+    ]
+  }
+}
